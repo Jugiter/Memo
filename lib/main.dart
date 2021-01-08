@@ -4,15 +4,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 
+import 'memo.dart';
+
 void main() {
   runApp(MyApp());
-}
-
-class Memo {
-  final String title;
-  final String description;
-
-  Memo(this.title, this.description);
 }
 
 class MyApp extends StatelessWidget {
@@ -38,8 +33,9 @@ class MyHomePage extends StatefulWidget {
 final memos = List<Memo>.generate(
   20,
       (i) => Memo(
-    'Diary $i',
-    '제목과 일기 내용이 나타나도록 할 예정',
+          title: 'Diary $i',
+          body: '제목과 일기 내용이 나타나도록 할 예정',
+          updatedAt: DateTime.now(),
   ),
 );
 
@@ -129,10 +125,13 @@ class DetailDiaryPage extends StatelessWidget {
           (child: Icon(Icons.save, color: Colors.white),
     onPressed: () {
     // TextField에 적은 값을 가져와서, 메모 객체를 만든다
-    Memo memo = new Memo(
-      title: titleInputController.text,
-      body: bodyInputController.text,
-    );
+      Memo memo = new Memo(
+        title: titleInputController.text,
+        body: bodyInputController.text,
+        updatedAt: DateTime.now(),
+      );
+
+      // TODO: onPress 시 데이터베이스에 메모를 추가할 것
     }));
   }
 }
@@ -152,10 +151,10 @@ class DetailScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
-        child: Text(todo.description),
+        child: Text(todo.body),
       ),
     floatingActionButton: FloatingActionButton(
-    child: Icon(Icons.edit_rounded, color: Colors.white),
+      child: Icon(Icons.edit_rounded, color: Colors.white),
     ));
   }
 }
