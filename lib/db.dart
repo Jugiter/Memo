@@ -4,10 +4,9 @@ import 'package:armemo/main.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:armemo/memo.dart';
 
-import 'memo.dart';
-
-final String databaseName = 'mymo.db';
+final String databaseName = 'memo.db';
 final String tableName = 'memo';
 
 class DatabaseHelper {
@@ -74,7 +73,7 @@ class DatabaseHelper {
   }
 
   // 특정 ID를 가진 메모를 수정함 (덮어씀)
-  updateMemo(Memo memo) async {
+  updateDiary(Memo memo) async {
     final db = await database;
     var res = await db.update(tableName, memo.toMap(),
         where: 'id = ?', whereArgs: [memo.id]);
@@ -83,7 +82,7 @@ class DatabaseHelper {
   }
 
   // 특정 ID를 가진 메모를 삭제함
-  deleteMemo(int id) async {
+  deleteDiary(int id) async {
     final db = await database; db.delete(tableName, where: 'id = ?', whereArgs: [id]);
   }
 }
