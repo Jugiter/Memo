@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1089138296532",
+    "project_id": "diary-app-78563",
+    "storage_bucket": "diary-app-78563.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089138296532:android:6497d0b92b53a65136dd41",
+        "android_client_info": {
+          "package_name": "com.example.armemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1089138296532-1qjlsmouscvvu3fqsra5cbcfr2h8lff3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU9imj3x4Iky73k8t1dHyW4k5T5ONe3W8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1089138296532-1qjlsmouscvvu3fqsra5cbcfr2h8lff3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

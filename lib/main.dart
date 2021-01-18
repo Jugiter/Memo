@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
@@ -77,8 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     );
                   })
-                  : Container(
-                  child: Center(
+                  : Container(child: Center(
                       child: Column(children: <Widget>[
                         (Text("일기장이 비어있어요!",
                             style: TextStyle(color: Colors.grey, fontSize: 20)))
@@ -93,13 +93,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _createDiaryPage(BuildContext context) async {
     await Navigator.push(
-        context, MaterialPageRoute(builder: (context) => CreateDiaryPage()));
+        context,
+        MaterialPageRoute(builder: (context) => CreateDiaryPage()));
 
     setState(() {});
   }
 
-  _deleteDiary(int diaryId) async {
-    await DatabaseHelper().deleteDiary(diaryId);
+  _deleteDiary(String memoId) async {
+    await DatabaseHelper().deleteMemo(memoId);
 
     setState(() {});
   }
@@ -373,7 +374,7 @@ class _EditDiaryState extends State<EditDiaryWidget> {
           this.memo.body = bodyInputController.text;
           this.memo.updatedAt = DateTime.now();
 
-          DatabaseHelper().updateDiary(this.memo);
+          DatabaseHelper().updateMemo(this.memo);
           Navigator.pop(context);
         },
         tooltip: '새 일기',

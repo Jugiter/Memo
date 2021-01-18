@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:armemo/db.dart';
 
 class Memo extends Equatable{
-  int id;
+  String id;
   String title;
   String body;
   DateTime updatedAt;
@@ -30,4 +30,11 @@ class Memo extends Equatable{
     updatedAt: DateTime.parse(data["updatedAt"]),
   );
 
+//여기부터 데베.. ?
+@override
+String toString() {
+  String id = this.id;
+  String title = this.title;
+  return "$id : $title";
+}
 }
