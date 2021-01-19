@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:focused_menu/focused_menu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -60,31 +61,36 @@ class _MyHomePageState extends State<MyHomePage> {
                     var formatDateTime =
                     DateFormat('yyyy-MM-dd').format(item.updatedAt);
 
-                    return Slidable(
-                      actionPane: SlidableDrawerActionPane(),
-                      actionExtentRatio: 0.25,
-                      child: ListTile(
+                    return  ListTile(
                         title: Text(item.title,
-                            style: TextStyle(fontSize: 18)),
-                        subtitle: Text(formatDateTime + '  ' + item.body,
-                            style: TextStyle(
-                                color: Colors.grey.withOpacity(0.8)),
-                            maxLines: 1),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () {
-                          _detailDiaryPage(context, item);
-                        },
-                      ),
-                      secondaryActions: <Widget>[
-                        IconSlideAction(
-                            color: Colors.red,
-                            icon: Icons.delete,
-                            onTap: () {
+                        style: TextStyle(fontSize: 18)),
+                    subtitle: Text(formatDateTime + '  ' + item.body,
+                    style: TextStyle(
+                    color: Colors.grey.withOpacity(0.8)),
+                    maxLines: 1,
+                    ),
+                        trailing: PopupMenuButton(
+                            onSelected: (value) {
                               _deleteDiary(item.id);
-                            })
-                      ],
+                            },
+                            itemBuilder: (context) => [
+                              PopupMenuItem(
+                                value: 1,
+                                child: Row(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+                                      child: Icon(Icons.delete),
+                                    ),
+                                    Text('delete')
+                                  ],
+                                ),
+                              )
+                            ]
+                        ),
                     );
-                  })
+                  }
+                  )
                   : Container(
                     child: Center(
                       child: Column(
